@@ -2,17 +2,14 @@
 
 $number = rand(1, 100000);
 $count = countNum($number);
-echo "Количество цифр меньше 5 в числе ".$number.": ".$count;
+echo "РљРѕР»РёС‡РµСЃС‚РІРѕ С†РёС„СЂ РјРµРЅСЊС€Рµ 5 РІ С‡РёСЃР»Рµ ".$number.": ".$count;
 
 function countNum($number) {
     $count = 0;
-    $array = array();
     while ($number > 0) {
-        $array[] = $number % 10; //находим остаток от деления на 10 и записываем в массив
-        $number = intval($number / 10); //убираем последнюю цифру с числа
-    }
-    for ($i = 0; $i < count($array); $i++) {
-        if ($array[$i] < 5) {
+        $numeral = $number % 10; //РЅР°С…РѕРґРёРј РѕСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ РЅР° 10 Рё Р·Р°РїРёСЃС‹РІР°РµРј РІ РїРµСЂРµРјРµРЅРЅСѓСЋ
+        $number = floor ($number / 10); //СѓР±РёСЂР°РµРј РїРѕСЃР»РµРґРЅСЋСЋ С†РёС„СЂСѓ СЃ С‡РёСЃР»Р°
+        if ($numeral < 5) {
             $count++;
         }
     }
