@@ -3,7 +3,7 @@
 $number = rand(1, 100000);
 $compare = 5;
 $count = countNum($number, $compare);
-echo "Количество цифр меньше 5 в числе ".$number.": ".$count;
+echo "Количество цифр меньше ".$compare." в числе ".$number.": ".$count;
 
 function countNum($number, $compare) {
     $count = 0;
