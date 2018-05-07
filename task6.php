@@ -4,30 +4,22 @@ $num1 = 0;
 $num2 = 2;
 $num3 = 3;
 $num4 = 7;
+$sum = $num1 + $num2 + $num3 + $num4;
+$prod = $num2 * $num3 * $num4;
 for ($i = 1000; $i < 10000; $i++) {
-    $result = false;
     $number = $i;
+    $numeralsSum = 0;
+    $numeralsProd = 1;
+    $numeral = $number % 10;
     while ($number > 0) {
         $numeral = $number % 10;
         $number = floor($number / 10);
-        $newNum = $number;
-        if ($numeral === $num1 || $numeral === $num2 || $numeral === $num3 || $numeral === $num4) {
-            while ($newNum > 0) {
-                $newNumeral = $newNum % 10;
-                $newNum = floor($newNum / 10);
-                if ($numeral !== $newNumeral) {
-                    $result = true;
-                } else {
-                    $result = false;
-                    break 2;
-                }
-            }
-        } else {
-            $result = false;
-            break;
+        $numeralsSum += $numeral;
+        if ($numeral !== 0) {
+            $numeralsProd *= $numeral;
         }
     }
-    if ($result) {
+    if ($numeralsSum === $sum && $numeralsProd === $prod) {
         echo $i."<br>";
     }
 }
