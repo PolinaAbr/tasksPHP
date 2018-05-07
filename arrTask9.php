@@ -40,13 +40,11 @@ for ($i = 0; $i < $rows; $i++) {
 
 echo "<br>Новый массив:<br>";
 for ($i = 0; $i < $rows; $i++) {
-    for ($i = 0; $i < $rows; $i++) {
-        for ($j = 0; $j < $columns; $j++) {
-            if ($j == $columns - 1) {
-                echo $array[$i][$j] . "<br>";
-            } else {
-                echo $array[$i][$j] . " ";
-            }
+    for ($j = 0; $j < $columns; $j++) {
+        if ($j == $columns - 1) {
+            echo $array[$i][$j] . "<br>";
+        } else {
+            echo $array[$i][$j] . " ";
         }
     }
 }
