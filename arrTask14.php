@@ -1,8 +1,8 @@
 <?php
 
 $array = array(array(0, 1, 0, 0, 1), array(0, 0, 0, 0, 0), array(0, 1, 0, 0, 1), array(0, 0, 0, 0, 0));
-$columns = 5;
-$rows = 4;
+$columns = count($array[0]);
+$rows = count($array);
 for ($i = 0; $i < $rows; $i++) {
     for ($j = 0; $j < $columns; $j++) {
         if ($j == $columns - 1) {
