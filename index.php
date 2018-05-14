@@ -1,29 +1,33 @@
 <?php
 
-$string = "012";
+$string = "01234";
 $length = 3;
 //вычисляем количество возможных комбинаций
 $count = factorial(strlen($string)) / factorial(strlen($string) - $length);
 
 $array = array();
+$last = array();
 $max = strlen($string) - 1;
 $row = 1;
 
 //заполняем первую строку массива индексами первой комбинации
 for ($i = 0; $i < $length; $i++) {
     $array[0][$i] = $i;
+    $last[] = $max - $i;
 }
 
 //пока массив не будет заполнен числом строк $count
-while (count($array) < $count) {
+for (;;) {
     //указатель на последнем элементе комбинации
     $position = $length - 1;
     $array[$row] = combination($array[$row - 1], $position, $max);
+    if ($array[$row] == $last) {
+        break;
+    }
     $row++;
 }
-
 //вывод всех полученных комбинаций
-for ($i = 0; $i < $count; $i++) {
+for ($i = 0; $i <= $row; $i++) {
     echo $i + 1;
     echo ". ";
     for ($j = 0; $j < $length; $j++) {
@@ -104,3 +108,5 @@ function factorial($number){
         return $number * factorial($number - 1);
     }
 }
+
+var_dump(memory_get_usage());
