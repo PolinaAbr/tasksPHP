@@ -14,9 +14,11 @@ for ($i = 0; $i < $rows; $i++) {
     }
 }
 
+$array = transpMatrix($array, $columns, $rows);
+
 $result = false;
-for ($i = 0; $i < $rows; $i++) {
-    for ($j = 0; $j < $columns; $j++) {
+for ($i = 0; $i < $columns; $i++) {
+    for ($j = 0; $j < $rows; $j++) {
         if ($array[$i][$j] < 0) {
             $result = true;
         } else {
@@ -25,7 +27,7 @@ for ($i = 0; $i < $rows; $i++) {
         }
     }
     if ($result) {
-        for ($j = 0; $j < $columns; $j++) {
+        for ($j = 0; $j < $rows; $j++) {
             $sum = 0;
             $number = abs($array[$i][$j]);
             while ($number > 0) {
@@ -38,6 +40,8 @@ for ($i = 0; $i < $rows; $i++) {
     }
 }
 
+$array = transpMatrix($array, $rows, $columns);
+
 echo "<br>Новый массив:<br>";
 for ($i = 0; $i < $rows; $i++) {
     for ($j = 0; $j < $columns; $j++) {
@@ -47,4 +51,50 @@ for ($i = 0; $i < $rows; $i++) {
             echo $array[$i][$j] . " ";
         }
     }
+}
+
+function transpMatrix($matrix, $columns, $rows) {
+    $toSquare = false;
+    if ($columns !== $rows) {
+        $matrix = squareMatrix($matrix, $columns, $rows);
+        $toSquare = true;
+    }
+    $transp = array();
+    for ($i = 0; $i < count($matrix); $i++) {
+        for ($j = 0; $j < count($matrix); $j++) {
+            $transp[$i][$j] = $matrix[$j][$i];
+        }
+    }
+    if ($toSquare) {
+        $transp = matrix($transp);
+    }
+    return $transp;
+}
+
+function squareMatrix($matrix, $columns, $rows) {
+    if ($columns < $rows) {
+        for ($i = 0; $i < $rows; $i++) {
+            for ($j = $columns; $j < $rows; $j++) {
+                $matrix[$i][$j] = null;
+            }
+        }
+    } else {
+        for ($i = $rows; $i < $columns; $i++) {
+            for ($j = 0; $j < $columns; $j++) {
+                $matrix[$i][$j] = null;
+            }
+        }
+    }
+    return $matrix;
+}
+
+function matrix($matrix) {
+    for ($i = 0; $i < count($matrix); $i++) {
+        for ($j = 0; $j < count($matrix); $j++) {
+            if ($matrix[$i][$j] == null) {
+                unset($matrix[$i][$j]);
+            }
+        }
+    }
+    return $matrix;
 }
