@@ -1,7 +1,10 @@
 <?php
 
-$string = "01234";
-$length = 3;
+$m1 = memory_get_usage();
+
+$string = "01234567";
+$length = 7;
+//2783.45 kb
 //вычисляем количество возможных комбинаций
 $count = factorial(strlen($string)) / factorial(strlen($string) - $length);
 
@@ -17,7 +20,7 @@ for ($i = 0; $i < $length; $i++) {
 }
 
 //пока массив не будет заполнен числом строк $count
-for (;;) {
+while (true) {
     //указатель на последнем элементе комбинации
     $position = $length - 1;
     $array[$row] = combination($array[$row - 1], $position, $max);
@@ -26,15 +29,16 @@ for (;;) {
     }
     $row++;
 }
+echo ($row + 1)."<br>";
 //вывод всех полученных комбинаций
-for ($i = 0; $i <= $row; $i++) {
-    echo $i + 1;
-    echo ". ";
-    for ($j = 0; $j < $length; $j++) {
-        echo $string[$array[$i][$j]];
-    }
-    echo "<br>";
-}
+//for ($i = 0; $i <= $row; $i++) {
+//    echo $i + 1;
+//    echo ". ";
+//    for ($j = 0; $j < $length; $j++) {
+//        echo $string[$array[$i][$j]];
+//    }
+//    echo "<br>";
+//}
 
 function combination($prev, $position, $max) {
     if ($prev[$position] + 1 > $max) {
@@ -89,14 +93,12 @@ function after_position($i, $array, $number) {
         if ($number !== $array[$j]) {
             $result = true;
         } else {
-            $result = false;
-            break;
+            $number++;
+            $j = -1;
         }
     }
     if ($result) {
         return $number;
-    } else {
-        return after_position($i, $array, $number + 1);
     }
 }
 
@@ -109,4 +111,5 @@ function factorial($number){
     }
 }
 
-var_dump(memory_get_usage());
+$m2 = memory_get_usage();
+echo round(($m2 - $m1)/8/ 1024, 2)." kb";
