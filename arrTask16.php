@@ -26,7 +26,7 @@ for ($i = 0; $i < $columns; $i++) {
         }
     }
 }
-array_splice($array, $insert + 1, 0, array($insertArray));
+$array = insertElement($array, $insert, $insertArray);
 $columns = count($array);
 $rows = count($array[0]);
 $temp = array();
@@ -40,6 +40,20 @@ for ($i = 0; $i < $rows; $i++) {
             echo $array[$i][$j] . " ";
         }
     }
+}
+
+function insertElement($array, $position, $element) {
+    $new = array();
+    for ($i = 0; $i < $position; $i++) {
+        $new[$i] = $array[$i];
+    }
+    $new[$position] = $element;
+    if ($position < count($array) - 1) {
+        for ($i = $position; $i < count($array); $i++) {
+            $new[$i + 1] = $array[$i];
+        }
+    }
+    return $new;
 }
 
 function transpMatrix($matrix, $columns, $rows) {
