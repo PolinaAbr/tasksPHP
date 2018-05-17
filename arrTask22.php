@@ -5,7 +5,7 @@ $columns = 7;
 $rows = 5;
 for ($i = 0; $i < $rows; $i++) {
     for ($j = 0; $j < $columns; $j++) {
-        $array[$i][$j] = rand(1, 9);
+        $array[$i][$j] = rand(0, 9);
         echo $array[$i][$j]." ";
     }
     echo "<br>";
@@ -13,7 +13,7 @@ for ($i = 0; $i < $rows; $i++) {
 
 $array = transpMatrix($array, $columns, $rows);
 for ($i = 0; $i < $columns; $i++) {
-    sort($array[$i]);
+    $array[$i] = mySort($array[$i]);
 }
 $array = transpMatrix($array, $rows, $columns);
 
@@ -36,6 +36,7 @@ function mySort($array) {
             }
         }
     }
+    return $array;
 }
 
 function transpMatrix($matrix, $columns, $rows) {
@@ -76,7 +77,7 @@ function squareMatrix($matrix, $columns, $rows) {
 function matrix($matrix) {
     for ($i = 0; $i < count($matrix); $i++) {
         for ($j = 0; $j < count($matrix); $j++) {
-            if ($matrix[$i][$j] == null) {
+            if ($matrix[$i][$j] === null) {
                 unset($matrix[$i][$j]);
             }
         }

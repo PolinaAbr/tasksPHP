@@ -12,7 +12,7 @@ for ($i = 0; $i < $rows; $i++) {
 }
 
 for ($i = 0; $i < $rows; $i++) {
-    sort($array[$i]);
+    $array[$i] = mySort($array[$i]);
 }
 
 echo "<br>Новый массив<br>";
@@ -34,4 +34,5 @@ function mySort($array) {
             }
         }
     }
+    return $array;
 }
