@@ -13,16 +13,6 @@ for ($i = 0; $i < $rows; $i++) {
 }
 
 for ($i = 0; $i < $rows; $i++) {
-    $count = 0;
-    for ($j = 0; $j < $columns; $j++) {
-        if ($array[$i][$j] > 0) {
-            $count++;
-        }
-    }
-    $countArray[$i] = $count;
-}
-
-for ($i = 0; $i < $rows; $i++) {
     $prime = false;
     $count = 0;
     for ($j = 0; $j < $columns; $j++) {
